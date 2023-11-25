@@ -1,12 +1,10 @@
 import { useState } from "react";
 import "./login.css";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchTodos } from "../features/todoSlice";
-import { loginSync } from "../features/authSlice";
+import { signup, login } from "../redux/slices/authSlice";
 
 export default function Login() {
-   const user = useSelector((state) => state.user);
-   const todo = useSelector((state) => state.todo);
+   const user = useSelector((state) => state.auth.userData);
    const dispatch = useDispatch();
 
    const [userData, setUserData] = useState({
@@ -14,6 +12,7 @@ export default function Login() {
       email: "",
       password: "",
    });
+   const { name, email, password } = userData;
 
    const handleChange = (e) => {
       const { name, value } = e.target;
@@ -21,6 +20,13 @@ export default function Login() {
          ...prevState,
          [name]: value,
       }));
+   };
+
+   const handleLogin = async () => {
+      dispatch(login({ email, password }));
+   };
+   const handleSignup = async () => {
+      dispatch(signup({ email, password, name }));
    };
 
    return (
@@ -60,20 +66,10 @@ export default function Login() {
                />
             </div>
             <div className="form-btns">
-               <button onClick={() => dispatch(loginSync())}>Login</button>
-               <button>Sign Up</button>
+               <button onClick={handleLogin}>Login</button>
+               <button onClick={handleSignup}>Sign Up</button>
             </div>
          </form>
-         <br />
-         <br />
-         <div className="App">
-            <button onClick={() => dispatch(fetchTodos())}>Click</button>
-            <br />
-            {todo?.isLoading && <b>Loading...</b>}
-            {todo?.data?.map((i) => {
-               return <li key={i.id}>{i.title}</li>;
-            })}
-         </div>
       </>
    );
 }

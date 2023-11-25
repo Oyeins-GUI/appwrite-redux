@@ -1,8 +1,12 @@
-# React + Vite
+# Appwrite + Redux
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Appwrite is used here as the backend of this application. Appwrite's open-source platform lets you add Auth, DBs, Functions and Storage to your product and build any application at any scale, own your data, and use your preferred coding languages and tools.
 
-Currently, two official plugins are available:
+Redux is used for state management.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Run project locally
+
+-  git clone https://github.com/Oyeins-GUI/appwrite-redux.git
+-  cd appwrite-redux
+-  npm install
+-  npm run dev
